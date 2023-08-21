@@ -2,8 +2,12 @@ import {
     createBrowserRouter,
     RouterProvider,
 } from "react-router-dom";
+import { checkAuth } from "store/user";
 import { Home } from "pages/Home";
-import { Login } from "pages/auth/Login";
+import { AuthPage } from "pages/auth/AuthPage";
+
+import 'style/auth.scss';
+import 'style/general.scss';
 
 const router = createBrowserRouter([
     {
@@ -11,12 +15,14 @@ const router = createBrowserRouter([
         element: <Home />
     },
     {
-        path: "/login",
-        element: <Login />
+        path: "/auth",
+        element: <AuthPage />
     },
 ]);
 
 function App() {
+    checkAuth();
+
     return (
         <RouterProvider router={router} />
     );

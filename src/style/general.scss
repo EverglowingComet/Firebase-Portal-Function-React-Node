@@ -1,0 +1,119 @@
+.btn-submit {
+	background-color: #1A4480;
+	border-color: #DDDDDD;
+	margin-right: 10px;
+	padding: 5px 12px;
+	font-size: 15px;
+	font-weight: 600;
+}
+
+.btn-submit:hover {
+	background-color: #8fb4e9;
+	border-color: #DDDDDD;
+}
+
+.btn-submit:active {
+	background-color: #3684bb;
+	border-color: #DDDDDD;
+}
+
+.btn-submit:focus {
+	background-color: #3684bb;
+	border-color: #DDDDDD;
+}
+
+.btn-green {
+	text-transform: uppercase;
+	color: #fff;
+	background-color: #16CB00;
+	/* background-image: linear-gradient(to right, #5ca9fb 0%, #6372ff 100%); */
+	padding: 5px 15px;
+	font-size: 15px;
+	font-weight: 700;
+	border: 0;
+}
+.btn-green:hover, .btn-custom:focus, .btn-custom.focus, .btn-custom:active, .btn-custom.active {
+	color: #fff;
+	background-image: none;
+	background-color: #6372ff;
+}
+
+.btn-edit {
+	background-color: #3684bb;
+	border-color: #DDDDDD;
+	margin-right: 10px;
+	padding: 5px 12px;
+	font-size: 15px;
+	font-weight: 600;
+}
+
+.btn-edit:hover {
+	background-color: #77b2db;
+	border-color: #DDDDDD;
+}
+
+.btn-edit:active {
+	background-color: #4b9fbe;
+	border-color: #DDDDDD;
+}
+
+.btn-edit:focus {
+	background-color: #4b9fbe;
+	border-color: #DDDDDD;
+}
+
+.btn-cancel {
+	border-color: #1A4480;
+	background-color: transparent;
+	color: #1A4480;
+	margin-right: 10px;
+	padding: 5px 6px;
+	font-size: 15px;
+	font-weight: 600;
+}
+
+.btn-cancel:hover {
+	border-color: #8fb4e9;
+	background-color: transparent;
+	color: #8fb4e9;
+}
+
+.btn-cancel:active {
+	border-color: #3684bb;
+	background-color: transparent;
+	color: #3684bb;
+}
+
+.btn-cancel:focus {
+	border-color: #3684bb;
+	background-color: transparent;
+	color: #3684bb;
+}
+
+.btn-blue {
+	color: white;
+	background-color: #3063FF;
+	border-color: #3063FF;
+	margin-right: 10px;
+	padding: 5px 12px;
+	font-size: 15px;
+	font-weight: 600;
+}
+
+.btn-blue:hover {
+	color: white;
+	background-color: #3063FF;
+	border-color: #3063FF;
+}
+
+.btn-blue:active {
+	background-color: #fa616a;
+	border-color: #fa616a;
+	color: #000;
+}
+
+.btn-blue:focus {
+	background-color: #fa616a;
+	border-color: #fa616a;
+	color: #000;
+}

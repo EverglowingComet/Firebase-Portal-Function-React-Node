@@ -14,6 +14,7 @@
 # firebase
 .firebaserc
 /functions/constants.js
+/src/utils/config.js
 
 # misc
 .DS_Store

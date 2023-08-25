@@ -2,7 +2,10 @@ import {
     createBrowserRouter,
     RouterProvider,
 } from "react-router-dom";
-import { checkAuth } from "store/user";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { useEffect } from "react";
+import { connect } from "react-redux";
+import { userActions } from "store/actions";
 import { Home } from "pages/Home";
 import { AuthPage } from "pages/auth/AuthPage";
 
@@ -20,12 +23,27 @@ const router = createBrowserRouter([
     },
 ]);
 
-function App() {
-    checkAuth();
+function App(props) {
+    useEffect(() => {
+        onAuthStateChanged(getAuth(), (user) => {
+            if (user && user.uid) {
+                props.checkAuth(user.uid);
+            }
+        })
+    })
 
     return (
         <RouterProvider router={router} />
     );
 }
 
-export default App;
+function mapState(state) {
+    const { loggingIn } = state.auth;
+    return { loggingIn }
+}
+
+const actionCreators = {
+    checkAuth: userActions.checkAuth
+};
+
+export default connect(mapState, actionCreators)(App);

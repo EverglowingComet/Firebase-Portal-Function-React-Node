@@ -4,7 +4,7 @@ import commonReducer from 'store/common';
 
 export default configureStore({
   reducer: {
-    user: userReducer,
+    auth: userReducer,
     common: commonReducer,
   },
 })

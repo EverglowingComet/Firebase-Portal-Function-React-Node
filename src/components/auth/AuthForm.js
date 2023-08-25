@@ -3,14 +3,14 @@ import { Button, Form, FormGroup, Input, Label, Spinner } from 'reactstrap';
 import { t } from 'i18next';
 import logoImage from 'assets/image/app_icon.png';
 import userImage from 'assets/image/player_photo_default.png';
-import { login, logout, register, sendResetEmail } from 'store/user';
-import { useDispatch, useSelector } from 'react-redux';
+import { connect } from 'react-redux';
+import { userActions } from 'store/actions';
 
 export const STATE_LOGIN = 'LOGIN';
 export const STATE_SIGNUP = 'SIGNUP';
 export const STATE_FORGOT = 'FORGOT';
 
-export function AuthForm(props) {
+function AuthForm(props) {
     const {
         authState,
         authEmail,
@@ -19,11 +19,9 @@ export function AuthForm(props) {
         logoTitle, 
         onLogoClick, 
         changeAuthState, 
+        user, 
+        loggingIn, 
     } = props;
-	const dispatch = useDispatch();
-
-    const user = useSelector((state) => state.user.value);
-    const loggingIn = useSelector((state) => state.user.loggingIn);
     
     const [username, setUsername] = useState(null);
     const [email, setEmail] = useState(authEmail);
@@ -57,11 +55,10 @@ export function AuthForm(props) {
                 password: password,
                 email: email,
             }
-
-            dispatch(register(user));
+            props.register(user);
 
         } else if (authEmail === STATE_FORGOT) {
-            dispatch(sendResetEmail(email));
+            props.sendResetEmail({email: email});
         } else {
             if (email == null || email === '') {
                 alert(t('email_empty'));
@@ -71,10 +68,10 @@ export function AuthForm(props) {
                 alert(t('password_empty'));
                 return;
             }
-            dispatch(login({
+            props.login({
                 email: email,
                 password: password,
-            }))
+            });
         }
     }
 
@@ -115,7 +112,7 @@ export function AuthForm(props) {
                     <Button
                         className="btn-cancel"
                         onClick={(e)=> {
-                            dispatch(logout());
+                            props.logout();
                         }}>
                         {t('logout')}
                     </Button>
@@ -146,7 +143,7 @@ export function AuthForm(props) {
                     name="username" 
                     placeholder={t('your_name')}
                     type="text" 
-                    value={username} 
+                    value={username ? username : ""} 
                     onChange={e => {
                         setUsername(e.target.value)
                     }} />
@@ -161,7 +158,7 @@ export function AuthForm(props) {
                     name="email" 
                     placeholder='your@email.com'
                     type="email" 
-                    value={(!email || email === '') && authEmail ? authEmail : email}
+                    value={(!email || email === '') && authEmail ? authEmail : (email ? email : "")}
                     onChange={e => {
                         if (authEmail && authState === STATE_SIGNUP) {
                             return;
@@ -179,7 +176,7 @@ export function AuthForm(props) {
                     name="password" 
                     placeholder={t('password')}
                     type="password" 
-                    value={password} 
+                    value={password ? password : ""} 
                     autoComplete="on"
                     onChange={e => {
                         setPassword(e.target.value)
@@ -197,7 +194,7 @@ export function AuthForm(props) {
                         placeholder={t('confirm_your_password')}
                         type="password" 
                         autoComplete="on"
-                        value={confirm} 
+                        value={confirm ? confirm : ""} 
                         onChange={e => {
                             setConfirm(e.target.value)
                         }} />
@@ -254,3 +251,18 @@ export function AuthForm(props) {
         </Form>
     );
 }
+
+function mapState(state) {
+    const { user, loggingIn } = state.auth;
+
+    return { user, loggingIn };
+}
+
+const actionCreators = {
+    register: userActions.register,
+    login: userActions.login,
+    logout: userActions.logout,
+    sendResetEmail: userActions.sendResetEmail,
+}
+
+export default connect(mapState, actionCreators) (AuthForm)

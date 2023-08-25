@@ -1,4 +1,4 @@
-import { AuthForm, STATE_LOGIN } from "components/auth/AuthForm";
+import AuthForm, { STATE_LOGIN } from "components/auth/AuthForm";
 import { useState } from "react";
 import { Card, Col, Row } from "reactstrap";
 
@@ -18,6 +18,7 @@ export function AuthPage() {
                     <AuthForm
                         authState={authState} 
                         changeAuthState={(update) => {
+                            console.log("333333333333333", update)
                             setAuthState(update);
                         }} />
                 </Card>

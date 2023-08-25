@@ -1,84 +1,24 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { signInWithEmailAndPassword, getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signOut, sendPasswordResetEmail } from "firebase/auth";
-import { listenDb, writeDb } from "utils/API";
 
 export const userSlice = createSlice({
-    name: "user",
+    name: "auth",
     initialState: {
-        value: null,
+        user: null,
         ref: null,
         loggingIn: false,
     },
     reducers: {
-        checkAuth: (state) => {
-            const auth = getAuth();
-            
-            onAuthStateChanged(auth, (user) => {
-                if (state.ref) {
-                    state.unsubscribe();
-                }
-                const uid = user.uid;
-                state.ref = listenDb("/user/" + uid, (data) => {
-                    state.value = data;
-                    state.loggingIn = false;
-                })
-            })
+        setLogginIn: (state, action) => {
+            state.loggingIn = action.payload;
         },
-        register: (state, action) => {
-            const data = action.payload;
-            const auth = getAuth();
-            state.loggingIn = true;
-
-            createUserWithEmailAndPassword(auth, data.email, data.password)
-            .then((credential) => {
-                if (credential && credential.user) {
-                    console.log("Login Successful: ", credential.user);
-
-                    const user = {
-                        uid: credential.user.uid,
-                        email: data.email,
-                        username: data.username,
-                    }
-
-                    writeDb("/user/" + user.uid, user);
-                    window.location = data.redirect ? data.redirect : "/";
-                } else {
-                    state.loggingIn = false;
-                }
-            })
-            .catch((error) => {
-                console.log("Authentication Error: ", error);
-                state.loggingIn = false;
-            })
+        setUserRef: (state, action) => {
+            state.ref = action.payload;
         },
-        login: (state, action) => {
-            state.loggingIn = true;
-            const data = action.payload;
-            const auth = getAuth();
-
-            signInWithEmailAndPassword(auth, data.email, data.password)
-            .then((credential) => {
-                if (credential && credential.user) {
-                    console.log("Login Successful: ", credential.user);
-                    window.location = data.redirect ? data.redirect : "/";
-                } else {
-                    state.loggingIn = false;
-                }
-            })
-            .catch((error) => {
-                console.log("Authentication Error: ", error);
-                state.loggingIn = false;
-            })
-        },
-        logout: (state) => {
-            state.value = null;
-            signOut();
-        },
-        sendResetEmail: (state, action) => {
-            sendPasswordResetEmail(getAuth(), action.payload);
+        setUser: (state, action) => {
+            state.user = action.payload;
         },
     },
 });
 
-export const { checkAuth, register, login, logout, sendResetEmail } = userSlice.actions;
+export const { setUserRef, setLogginIn, setUser } = userSlice.actions;
 export default userSlice.reducer;

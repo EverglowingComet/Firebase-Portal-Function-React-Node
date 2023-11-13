@@ -32,12 +32,22 @@ export const listenDb = (path, onChange) => {
     })
 }
 
-export const readDb = (path, onChange) => {
-    get(ref(getDatabase(), path), (snapshot) => {
+export const getReadDb = (path) => {
+    return get(ref(getDatabase(), path));
+}
+
+export const readDb = (path, onChange, onFailure) => {
+    get(ref(getDatabase(), path))
+    .then((snapshot) => {
         const data = snapshot.val();
 
         onChange(data);
     })
+    .catch((error) => {
+        if (onFailure) {
+            onFailure(error);
+        }
+    });
 }
 
 export const writeDb = (path, data, finished) => {
@@ -49,6 +59,7 @@ export const writeDb = (path, data, finished) => {
     })
     .catch((error) => {
         if (finished) {
+            console.log("Write Failed:", error)
             finished(error);
         }
     });

@@ -1,0 +1,118 @@
+.admin-page {
+    background-color: #eee;
+    position: absolute;
+    width: 100%;
+    height: calc(100% - 70px);
+    top: 70px;
+    left: 0;
+    display: flex;
+    flex-direction: row;
+}
+
+.admin-side-menu {
+    flex: 0 0 auto;
+    height: 100%;
+    border-right: 1px solid rgba(0, 0, 0, 0.15);
+	box-shadow: 5px 0 5px rgba(0,0,0,0.15);
+    background-color: white;
+}
+
+.admin-contents {
+    flex: 1 1 auto;
+    padding: 20px 30px;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.admin-side-title {
+    display: flex;
+    flex-direction: row;
+    margin: 30px 15px 10px;
+}
+
+.admin-side-title-icon {
+    font-size: 32px;
+    width: 48px;
+    height: 48px;
+    margin: auto 0px;
+    text-align: center;
+}
+
+.admin-side-menu-title {
+    font-size: 32px;
+    width: 240px;
+    padding-left: 10px;
+    margin: auto 0px;
+}
+
+.admin-side-item {
+    display: flex;
+    flex-direction: row;
+    margin: 10px 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.admin-side-item.selected {
+    background-color: #eee;
+}
+
+.admin-side-menu-icon {
+    font-size: 26px;
+    width: 36px;
+    height: 36px;
+    margin: auto 0px;
+    text-align: center;
+    color: #444;
+}
+
+.admin-side-menu-text {
+    font-size: 20px;
+    width: 240px;
+    padding-left: 10px;
+    margin: auto 0px;
+    color: #444;
+}
+
+.admin-edit-content {
+    padding: 15px 20px;
+}
+
+.input-item {
+    margin: 15px 0px;
+}
+
+.input-label {
+    font-size: 16px;
+}
+
+.input-label-small {
+    font-size: 14px;
+}
+
+@media (max-width: 1024px) {
+	
+}
+	
+@media (max-width: 768px) {
+    .admin-side-title {
+        margin: 25px 5px 10px;
+    }
+    
+    .admin-side-menu-title {
+        width: 200px;
+    }
+}
+	
+@media (max-width: 425px) {
+    .admin-side-title {
+        margin: 25px 5px 10px;
+    }
+    
+    .admin-side-menu-title {
+        display: none;
+    }
+    
+    .admin-side-menu-text {
+        display: none;
+    }
+}

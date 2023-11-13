@@ -1,18 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import firebase from 'firebase/compat/app';
-import { firebaseConfig } from 'utils/config';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+import store from 'store/';
+import { Provider } from 'react-redux';
 import 'trans/i18n';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { Provider } from 'react-redux';
-import store from 'store/';
+import { initializeApp } from 'firebase/app';
+import { firebaseConfig } from 'utils/config';
 
-firebase.initializeApp(firebaseConfig);
+initializeApp(firebaseConfig);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

@@ -1,0 +1,93 @@
+.dashboard-header {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 48px;
+    margin: 20px 0px;
+    padding: 0px 20px;
+}
+
+.dashboard-header-icon {
+    width: 48px;
+    height: 48px;
+}
+
+.dashboard-header-title {
+    flex: 1 1 auto;
+    font-size: 24px;
+    font-weight: 400;
+    color: black;
+    margin: auto 16px;
+}
+
+.dashboard-header-user {
+    flex: 0 0 auto;
+    width: 48px;
+    height: 48px;
+    margin: auto 8px;
+}
+
+.dashboard-header-settings {
+    flex: 0 0 auto;
+    font-size: 36px;
+    font-weight: 400;
+    color: rgb(59, 59, 59);
+    line-height: 36px;
+    margin: auto 8px;
+}
+
+.dashboard-content-title {
+    font-size: 20px;
+    font-weight: 400;
+    color: black;
+    margin: auto 10px;
+}
+
+.dashboard-content-empty {
+    height: 70px;
+    padding-top: 25px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.form-edit {
+	margin: 10px auto;
+	max-width: 762px;
+	box-shadow: 0 0 5px rgba(0,0,0,0.15);
+	border: 1px solid rgb(87, 87, 87,0.15);
+	border-radius: 5px;
+	background-color: white;
+}
+
+.form-edit-row {
+	margin: 15px 0px;
+}
+
+.form-edit-subtitle {
+	margin: 10px 20px;
+	width: 100%;
+	font-size: 16px;
+	text-align: center;
+}
+
+.form-edit-label {
+	text-align: right;
+	margin: auto 0px;
+	font-size: 14px;
+	font-weight: 800;
+}
+
+.form-edit-entry {
+	font-size: 12px;
+	text-align: left;
+}
+
+.form-edit-input {
+	max-width: 360px;
+}
+
+.form-edit-info {
+	max-width: 360px;
+	margin-top: 6px;
+    font-size: 14px;
+}

@@ -6,22 +6,42 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useEffect } from "react";
 import { connect } from "react-redux";
 import { userActions } from "store/actions";
-import { Home } from "pages/Home";
-import { AuthPage } from "pages/auth/AuthPage";
+import HomePage from "pages/HomePage";
+import InvitePage from "pages/InvitePage";
+import DashboardPage from "pages/dashboard/DashboardPage";
+import ReportPage from "pages/dashboard/ReportPage";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.min.js';
 
-import 'style/auth.scss';
-import 'style/general.scss';
+import 'style/side-menu.css';
+import 'style/dashboard.css';
+import 'style/report.css';
+import 'style/admin.css';
+import 'style/auth.css';
+import 'style/book.css';
+import 'style/general.css';
+import 'style/main-landing.css';
 
 const router = createBrowserRouter([
     {
-        path: "/",
-        element: <Home />
+        path: "/invite/:email",
+        element: <InvitePage />
     },
     {
-        path: "/auth",
-        element: <AuthPage />
+        path: "/",
+        element: <HomePage />
     },
-]);
+    {
+        path: "dashboard",
+        element: <DashboardPage />,
+        children: [
+            {
+                path: "gallery",
+                element: <ReportPage />
+            },
+        ]
+    },
+])
 
 function App(props) {
     useEffect(() => {

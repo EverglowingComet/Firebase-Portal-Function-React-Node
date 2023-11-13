@@ -1,0 +1,90 @@
+.report-item-wrapper {
+    display: flex;
+    flex-flow: row;
+	margin: 10px;
+    padding: 5px 10px;
+	height: 100%;
+	box-shadow: 0 0 5px rgba(0,0,0,0.15);
+	border: 1px solid rgb(87, 87, 87,0.15);
+	border-radius: 5px;
+	overflow: hidden;
+}
+
+.report-item-title {
+    font-size: 18px;
+    margin: 5px 5px;
+    width: 140px;
+}
+
+.report-item-date {
+    font-size: 14px;
+    margin: 5px 5px;
+}
+
+.report-item-info {
+    display: flex;
+    flex-flow: row;
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+.report-bp-info-item {
+    flex: 0 0 auto;
+    width: 70px;
+    height: 50px;
+    margin: 5px 5px;
+    border: 1px solid black;
+	border-radius: 5px;
+    text-align: center;
+    background-color: white;
+}
+
+.report-bp-info-item-title {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.report-bp-info-item-value {
+    font-size: 14px;
+}
+
+.report-bp-info-item-range {
+    margin: 15px 10px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.report-table-header {
+    display: flex;
+    flex-flow: row;
+	margin: 10px;
+    padding: 5px 10px;
+	height: 100%;
+	box-shadow: 0 0 5px rgba(0,0,0,0.15);
+	border: 1px solid rgb(87, 87, 87,0.15);
+	border-radius: 5px;
+	overflow: hidden;
+}
+
+.report-table-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin: auto 10px;
+}
+
+.report-table-filter {
+    margin: 5px 0px;
+}
+
+.report-table-filter-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin: auto 10px;
+}
+
+@media (max-width: 425) {
+    .report-item-title {
+        width: 70px;
+    }
+    
+}

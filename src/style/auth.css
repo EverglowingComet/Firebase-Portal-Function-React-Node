@@ -1,0 +1,95 @@
+.auth-wrapper {
+	padding: 25px 20px;
+}
+
+.auth-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.35);
+    z-index: 1000;
+}
+
+.auth-layout {
+    position: absolute;
+    width: 800px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+	background-color: white;
+	border-color: rgba(0, 0, 0, 0.5);
+    border-radius: 24px;
+	padding: 10px 20px;
+	font-size: 15px;
+	box-shadow: 0 0 5px rgba(0,0,0,0.15);
+}
+
+.auth-icon {
+    width: 100%;
+    height: 64px;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font-size: 12px;
+    object-fit: contain;
+}
+
+.auth-title {
+    margin-top: 25px;
+    margin-bottom: 15px;
+    font-size: 36px;
+    width: 100%;
+    text-align: center;
+}
+
+.auth-switch {
+    color: #3063FF;
+    font-size: 14px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.btn-auth {
+    width: 100%;
+	color: white;
+	background-color: #3063FF;
+	border-color: #3063FF;
+	margin: 10px 0px;
+	padding: 10px 20px;
+	font-size: 20px;
+	font-weight: 600;
+}
+
+.btn-auth:hover {
+	color: white;
+	background-color: #3063FF;
+	border-color: #3063FF;
+}
+
+.btn-auth:active {
+	background-color: #fa616a;
+	border-color: #fa616a;
+	color: #000;
+}
+
+.btn-auth:focus {
+	background-color: #fa616a;
+	border-color: #fa616a;
+	color: #000;
+}
+
+@media (max-width: 1024px) {
+	
+}
+	
+@media (max-width: 768px) {
+	.auth-layout {
+		width: 80%;
+	}
+}
+	
+@media (max-width: 425px) {
+
+}

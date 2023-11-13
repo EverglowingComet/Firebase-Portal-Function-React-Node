@@ -1,25 +1,36 @@
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, sendPasswordResetEmail } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, sendPasswordResetEmail, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { get, getDatabase, ref } from "firebase/database";
-import { readDb, writeDb } from "utils/API";
+import { getReadDb, readDb, writeDb } from "utils/API";
 
 export const userServices = {
     checkAuth,
     register,
     login,
     logout,
+    loginWithGoogle,
     sendResetEmail,
 }
 
 function checkAuth(uid) {
+    let isAdmin = false;
     
-    return get(ref(getDatabase(), `/user/${uid}`))
+    return get(ref(getDatabase(), `/adminUids/${uid}`))
+    .then((snapshot) => {
+        const data = snapshot.val();
+        if (data) {
+            isAdmin = true;
+        }
+
+        return getReadDb(`/user/${uid}`);
+    })
     .then((snapshot) => {
         const data = snapshot.val();
 
         if (data) {
+            data.isAdmin = isAdmin;
             return Promise.resolve(data);
         } else {
-            return Promise.error(null);
+            return Promise.reject(null);
         }
     })
     .catch((error) => {
@@ -28,7 +39,7 @@ function checkAuth(uid) {
 
         console.log(errorCode, errorMessage);
         alert(errorMessage);
-        return Promise.error(error);
+        return Promise.reject(error);
     });
 }
 
@@ -76,6 +87,40 @@ function login(data) {
     
     return signInWithEmailAndPassword(auth, data.email, data.password)
     .then((credential) => {
+        if (credential && credential.user) {
+            const uid = credential.user.uid;
+            if (uid) {
+                readDb(`/user/${uid}`, (data) => {
+                    if (data) {
+                        return Promise.resolve(data);
+                    } else {
+                        return Promise.reject(null);
+                    }
+                })
+            } else {
+                return Promise.reject(null);
+            }
+        } else {
+            return Promise.reject(null);
+        }
+    })
+    .catch((error) => {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+
+        console.log(errorCode, errorMessage);
+        alert(errorMessage);
+        return Promise.reject(error);
+    })
+}
+
+function loginWithGoogle() {
+    const auth = getAuth();
+    const provider = new GoogleAuthProvider();
+
+    return signInWithPopup(auth, provider)
+    .then((result) => {
+        const credential = GoogleAuthProvider.credentialFromResult(result);
         if (credential && credential.user) {
             const uid = credential.user.uid;
             if (uid) {

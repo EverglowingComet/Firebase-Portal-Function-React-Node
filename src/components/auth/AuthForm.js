@@ -5,6 +5,7 @@ import logoImage from 'assets/image/app_icon.png';
 import userImage from 'assets/image/player_photo_default.png';
 import { connect } from 'react-redux';
 import { userActions } from 'store/actions';
+import { FcGoogle } from 'react-icons/fc';
 
 export const STATE_LOGIN = 'LOGIN';
 export const STATE_SIGNUP = 'SIGNUP';
@@ -207,12 +208,25 @@ function AuthForm(props) {
                     <Spinner color="primary" />
                 </div>
             ) : (
-                <div className='text-center'>
-                    <Button
-                        className="btn-blue"
-                        onClick={handleSubmit}>
-                        {renderButtonText()}
-                    </Button>
+                <div>
+                    <div className='text-center' style={{margin: '10px 30px'}}>
+                        <Button
+                            className="btn-blue"
+                            onClick={handleSubmit}>
+                            {renderButtonText()}
+                        </Button>
+                    </div>
+                    {authState === STATE_LOGIN && (
+                    <div className='text-center' style={{margin: '10px 30px'}}>
+                        <Button
+                            className="btn-cancel"
+                            onClick={e=> {
+                                props.loginWithGoogle({});
+                            }}>
+                            <FcGoogle style={{margin: '0px 10px'}} />{t('login_with_google')}
+                        </Button>
+                    </div>
+                    )}
                 </div>
             ) }
 
@@ -261,6 +275,7 @@ function mapState(state) {
 const actionCreators = {
     register: userActions.register,
     login: userActions.login,
+    loginWithGoogle: userActions.loginWithGoogle,
     logout: userActions.logout,
     sendResetEmail: userActions.sendResetEmail,
 }

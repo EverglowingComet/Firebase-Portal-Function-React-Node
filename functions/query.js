@@ -110,6 +110,10 @@ exports.saveDbChange = (path, value) => {
     return admin.database().ref().child(path).set(value);
 };
 
+exports.generateId = (path) => {
+    return admin.database().ref().child(path).push().key;
+};
+
 exports.queryDb = (path) => {
     return admin.database().ref().child(path).once("value");
 };
